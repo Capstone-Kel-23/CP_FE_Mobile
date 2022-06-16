@@ -17,27 +17,32 @@ class _WelcomePageState extends State<WelcomePage> {
       body: Container(
         padding: const EdgeInsets.all(10),
         child: Center(
-          child: Column(
-              
-            
+          child: ListView(
             children: [
               Container(
                 margin: const EdgeInsets.only(bottom: 20),
                 child: Image.asset('assets/images/logo.png'),
               ),
-              Container(
-                child: Text(
-                  'Hai! Selamat datang',
-                  style: GoogleFonts.poppins(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
+              Column(
+                mainAxisAlignment:  MainAxisAlignment.center,
+                children: [
+                  Container(
+                    
+                    child: Text(
+                      'Hai! Selamat datang',
+                      style: GoogleFonts.poppins(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Container(
-                child: Text('Buat invoices dalam bentuk hitungan detik!',
-                    style: GoogleFonts.poppins(
-                        fontSize: 12, fontWeight: FontWeight.w500)),
+                  Container(
+                    
+                    child: Text('Buat invoices dalam bentuk hitungan detik!',
+                        style: GoogleFonts.poppins(
+                            fontSize: 12, fontWeight: FontWeight.w500)),
+                  ),
+                ],
               ),
               ElevatedButton(
                 onPressed: () {
@@ -76,8 +81,9 @@ class _WelcomePageState extends State<WelcomePage> {
                         );
                       }));
                     },
+                    style: ElevatedButton.styleFrom(primary: Colors.white, textStyle: TextStyle(color: Colors.black)),
                     child: Text('Sudah memiliki akun? Masuk')),
-              )
+              ),
             ],
           ),
         ),

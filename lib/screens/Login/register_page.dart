@@ -19,6 +19,7 @@ class _SignUpState extends State<RegisterPage> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _konfirmasiPasswordController = TextEditingController();
 
   late SharedPreferences logindata;
   late bool newUser;
@@ -49,6 +50,7 @@ class _SignUpState extends State<RegisterPage> {
     _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _konfirmasiPasswordController.dispose();
     super.dispose();
   }
 
@@ -162,7 +164,7 @@ class _SignUpState extends State<RegisterPage> {
                         height: 20,
                       ),
                       TextFormField(
-                        controller: _passwordController,
+                        controller: _konfirmasiPasswordController,
                         decoration: InputDecoration(
                           labelText: "Konfirmasi Password",
                           hintText: "Enter your password",
@@ -198,6 +200,7 @@ class _SignUpState extends State<RegisterPage> {
                             logindata.setBool('login', false);
                             logindata.setString('username', username);
                             logindata.setString('Email', email);
+                            
                             Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
