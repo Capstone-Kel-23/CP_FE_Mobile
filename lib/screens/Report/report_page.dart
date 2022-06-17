@@ -1,5 +1,8 @@
 import 'package:app_invoice/enum.dart';
 import 'package:app_invoice/screens/Dashboard/home_page.dart';
+import 'package:app_invoice/screens/Report/client_table.dart';
+import 'package:app_invoice/screens/Report/paid_table.dart';
+import 'package:app_invoice/screens/Report/unpaid_table.dart';
 import 'package:flutter/material.dart';
 
 class ReportPage extends StatefulWidget {
@@ -9,7 +12,7 @@ class ReportPage extends StatefulWidget {
 
 class _ReportPageState extends State<ReportPage>
     with SingleTickerProviderStateMixin {
-  final colorstheme = Color(0xff4b4b87);
+  final colorstheme = Color(0xff386190);
 
   late TabController _tabController;
 
@@ -27,7 +30,7 @@ class _ReportPageState extends State<ReportPage>
       appBar: AppBar(
         title: Text(
           'Report',
-          style: TextStyle(fontSize: 27, color: colorstheme),
+          style: TextStyle(fontSize: 27, color: Colors.black),
         ),
         centerTitle: true,
         shadowColor: Colors.transparent,
@@ -36,7 +39,7 @@ class _ReportPageState extends State<ReportPage>
           child: IconButton(
             icon: Icon(
               Icons.arrow_back,
-              color: colorstheme,
+              color: Colors.black,
               size: 30,
             ),
             onPressed: () {},
@@ -45,6 +48,7 @@ class _ReportPageState extends State<ReportPage>
       ),
       body: Column(
         children: [
+          SizedBox(height: 20,),
           Container(
             decoration: BoxDecoration(
                 // borderRadius: BorderRadius.circular(20),
@@ -69,18 +73,19 @@ class _ReportPageState extends State<ReportPage>
                 ]),
                 
           ),
+          SizedBox(height: 20,),
           Expanded(
             child: TabBarView(
               controller: _tabController,
               children: [
                 Container(
-                  child: Text('Paid'),
+                  child: PaidTable(),
                 ),
                 Container(
-                  child: Text('Unpaid'),
+                  child: UnpaidTable(),
                 ),
                 Container(
-                  child: Text('Client'),
+                  child: ClientTable(),
                 ),
               ],
             ),
