@@ -1,6 +1,6 @@
 import 'package:app_invoice/enum.dart';
-import 'package:app_invoice/screens/Dashboard/home_page.dart';
 import 'package:app_invoice/screens/Login/login_page.dart';
+import 'package:app_invoice/screens/Widget/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -38,141 +38,221 @@ class _SettingScreenState extends State<SettingScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'Profile',
-          style: GoogleFonts.poppins(
-              fontSize: 28, fontWeight: FontWeight.w500, color: Colors.black),
-        ),
         backgroundColor: Colors.white,
+        title: Text(
+          'Report',
+          style: TextStyle(fontSize: 27, color: Colors.black),
+        ),
+        centerTitle: true,
+        shadowColor: Colors.transparent,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 15.0),
+          child: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+              size: 30,
+            ),
+            onPressed: () {},
+          ),
+        ),
       ),
       body: Column(
         children: [
           SizedBox(
-            height: 20,
+            height: 40,
           ),
-          SizedBox(
-            height: 115,
-            width: 115,
-            child: Stack(
-              fit: StackFit.expand,
+          Container(
+            height: 40,
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+              color: Colors.grey[100],
+            ),
+            child: Row(
               children: [
-                CircleAvatar(
-                    backgroundImage: AssetImage('assets/img/person.jpg')),
+                Expanded(
+                  child: Text(
+                    'Support',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: 40,
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(color: Colors.white, boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                offset: const Offset(
+                  0.0,
+                  2.0,
+                ),
+                blurRadius: 1.0,
+                spreadRadius: 0.0,
+              ),
+            ]),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Contact Us',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ),
               ],
             ),
           ),
           SizedBox(
-            height: 5,
+            height: 20,
           ),
-          Text(
-            username,
-            style:
-                GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w500),
+          Container(
+            height: 40,
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+              color: Colors.grey[100],
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Bussiness Settings',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: 40,
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(color: Colors.white, boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                offset: const Offset(
+                  0.0,
+                  2.0,
+                ),
+                blurRadius: 1.0,
+                spreadRadius: 0.0,
+              ),
+            ]),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Edit Bussiness Information',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ),
+              ],
+            ),
           ),
           SizedBox(
             height: 20,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          Container(
+            height: 40,
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+              color: Colors.grey[100],
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Account',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: 40,
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(color: Colors.white, boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                offset: const Offset(
+                  0.0,
+                  2.0,
+                ),
+                blurRadius: 1.0,
+                spreadRadius: 0.0,
+              ),
+            ]),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Switch Account',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: 40,
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(color: Colors.white, boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                offset: const Offset(
+                  0.0,
+                  2.0,
+                ),
+                blurRadius: 1.0,
+                spreadRadius: 0.0,
+              ),
+            ]),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'SIgn Up',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(color: Colors.white, boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                offset: const Offset(
+                  0.0,
+                  2.0,
+                ),
+                blurRadius: 1.0,
+                spreadRadius: 0.0,
+              ),
+            ]),
             child: FlatButton(
                 padding: EdgeInsets.all(20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                color: Colors.grey[100],
-                onPressed: () {},
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      "assetName",
-                      width: 22,
-                      color: Colors.red,
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: Text(
-                        'My Account',
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                    ),
-                    Icon(Icons.arrow_forward_ios)
-                  ],
-                )),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: FlatButton(
-                padding: EdgeInsets.all(20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                color: Colors.grey[100],
-                onPressed: () {},
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      "assetName",
-                      width: 22,
-                      color: Colors.red,
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: Text(
-                        'About Apps',
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                    ),
-                    Icon(Icons.arrow_forward_ios)
-                  ],
-                )),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: FlatButton(
-                padding: EdgeInsets.all(20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                color: Colors.grey[100],
-                onPressed: () {},
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      "assetName",
-                      width: 22,
-                      color: Colors.red,
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: Text(
-                        'Settings',
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                    ),
-                    Icon(Icons.arrow_forward_ios)
-                  ],
-                )),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: FlatButton(
-                padding: EdgeInsets.all(20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                color: Colors.grey[100],
                 onPressed: () {
                   logindata.setBool('login', true);
                   logindata.remove('username');
@@ -185,24 +265,18 @@ class _SettingScreenState extends State<SettingScreen> {
                 },
                 child: Row(
                   children: [
-                    SvgPicture.asset(
-                      "assetName",
-                      width: 22,
-                      color: Colors.red,
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
                     Expanded(
                       child: Text(
                         'Log Out',
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ),
-                    Icon(Icons.arrow_forward_ios)
                   ],
                 )),
-          )
+          ),
+          SizedBox(
+            height: 20,
+          ),
         ],
       ),
       bottomNavigationBar: CustomBottomNavbar(
@@ -211,3 +285,40 @@ class _SettingScreenState extends State<SettingScreen> {
     );
   }
 }
+
+
+// Container(
+//             height: 40,
+//             margin: const EdgeInsets.symmetric(horizontal: 20),
+//             decoration: BoxDecoration(color: Colors.white, boxShadow: [
+//               BoxShadow(
+//                 color: Colors.grey,
+//                 offset: const Offset(
+//                   0.0,
+//                   2.0,
+//                 ),
+//                 blurRadius: 1.0,
+//                 spreadRadius: 0.0,
+//               ),
+//             ]),
+//             child: Row(
+//               children: [
+//                 FlatButton(
+//                   onPressed: () {
+//                   logindata.setBool('login', true);
+//                   logindata.remove('username');
+//                   Navigator.pushReplacement(
+//                     context,
+//                     MaterialPageRoute(
+//                       builder: (context) => const LoginPage(),
+//                     ),
+//                   );
+//                 },
+//                   child: Text(
+//                     'Log Out',
+//                     style: Theme.of(context).textTheme.bodyText1,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),

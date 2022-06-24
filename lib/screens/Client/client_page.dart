@@ -1,7 +1,9 @@
 import 'package:app_invoice/enum.dart';
-import 'package:app_invoice/screens/Dashboard/home_page.dart';
+import 'package:app_invoice/screens/Widget/bottom_navbar.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+
+import '../Widget/search_widget.dart';
 
 class ClientPage extends StatefulWidget {
   const ClientPage({ Key? key }) : super(key: key);
@@ -11,30 +13,37 @@ class ClientPage extends StatefulWidget {
 }
 
 class _ClientPageState extends State<ClientPage> {
-  
+  String query = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text(
+          'Client',
+          style: TextStyle(fontSize: 27, color: Colors.black),
+        ),
+        centerTitle: true,
+        shadowColor: Colors.transparent,
+        leading: Padding(
+          padding: const EdgeInsets.only(left:15.0),
+          child: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+              size: 30,
+            ),
+            onPressed: () {},
+          ),
+        ),
+        backgroundColor: Colors.white,
+      ),
       body: ListView(
         children: [
           Column(
             children: [
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(left: 20),
-                    color: Colors.white,
-                    child: Icon(Icons.search),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Text('Search'),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
+              buildSearch(),
               Container(
               height: 700,
               child: ListView.separated(
@@ -58,17 +67,38 @@ class _ClientPageState extends State<ClientPage> {
                 separatorBuilder: (context, index) {
                   return Divider();
                 },
-                itemCount: 30,
+                itemCount: 15,
               ),
             ),
             ],
-          )
+            
+          ),
+          
         ],
         
+                
+      ),
+      
+      floatingActionButton: const FloatingActionButton(
+        tooltip: 'Add', // used by assistive technologies
+        child: Icon(Icons.add),
+        onPressed: null,
       ),
       bottomNavigationBar: CustomBottomNavbar(
         selectedMenu: MenuState.client,
       ),
+      
     );
+  }
+
+  
+  Widget buildSearch() => SearchWidget(
+        text: query,
+        hintText: 'Search Invoice',
+        onChanged: searchBook,
+      );
+
+  void searchBook(String query) {
+    this.query = query;
   }
 }

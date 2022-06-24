@@ -1,9 +1,11 @@
 import 'package:app_invoice/screens/Dashboard/home_page.dart';
+import 'package:app_invoice/view_model/login_auth.dart';
 import 'package:email_validator/email_validator.dart';
 // import 'package:epl_sport/screens/home.dart';
 // import 'package:epl_sport/screens/login/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
@@ -67,94 +69,106 @@ class _SignUpState extends State<LoginPage> {
         elevation: 0,
       ),
       body: Container(
-        padding: const EdgeInsets.all(16),
-        child: Form(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            key: formKey,
-            child: ListView(
-              children: [
-                TextFormField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    labelText: "Email",
-                    hintText: "Enter your email",
-                    contentPadding: EdgeInsets.symmetric(
-                        horizontal: 45, vertical: 20),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                      gapPadding: 10,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                      gapPadding: 10,
-                    ),
-                    suffixIcon: Icon(Icons.email_outlined),
-                  ),
-                  validator: (email) {
-                    if (email != null &&
-                        !EmailValidator.validate(email)) {
-                      return 'Enter a valid email';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: _passwordController,
-                  decoration: InputDecoration(
-                    labelText: "Password",
-                    hintText: "Enter your password",
-                    contentPadding: EdgeInsets.symmetric(
-                        horizontal: 45, vertical: 20),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                      gapPadding: 10,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                      gapPadding: 10,
-                    ),
-                    suffixIcon: Icon(Icons.lock_outline_rounded),
-                  ),
-                  validator: (value) {
-                    if (value != null && value.length < 5) {
-                      return 'Enter min. 5 characters';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    final isValidForm = formKey.currentState!.validate();
-                    String username = _nameController.text;
-                    String email = _emailController.text;
-                    if (isValidForm) {
-                      logindata.setBool('login', false);
-                      logindata.setString('username', username);
-                      logindata.setString('Email', email);
-                      // manggil api
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MyHomePage(),
+                padding: const EdgeInsets.all(16),
+                child: Form(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    key: formKey,
+                    child: ListView(
+                      children: [
+                        TextFormField(
+                          controller: _emailController,
+                          decoration: InputDecoration(
+                            labelText: "Email",
+                            hintText: "Enter your email",
+                            contentPadding: EdgeInsets.all(20),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                              gapPadding: 10,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                              gapPadding: 10,
+                            ),
+                            suffixIcon: Icon(Icons.email_outlined),
+                          ),
+                          validator: (email) {
+                            if (email != null &&
+                                !EmailValidator.validate(email)) {
+                              return 'Enter a valid email';
+                            } else {
+                              return null;
+                            }
+                          },
                         ),
-                        // PageTransitionsBuilder()
-                        (route) => false,
-                      );
-                    }
-                  },
-                  child: const Text('Login'),
-                ),
-              ],
-            )),
-      ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
+                          controller: _passwordController,
+                          decoration: InputDecoration(
+                            labelText: "Password",
+                            hintText: "Enter your password",
+                            contentPadding: EdgeInsets.all(20),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                              gapPadding: 10,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                              gapPadding: 10,
+                            ),
+                            suffixIcon: Icon(Icons.lock_outline_rounded),
+                          ),
+                          validator: (value) {
+                            if (value != null && value.length < 5) {
+                              return 'Enter min. 5 characters';
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            final isValidForm =
+                                formKey.currentState!.validate();
+                            String username = _nameController.text;
+                            String email = _emailController.text;
+                            if (isValidForm) {
+                              logindata.setBool('login', false);
+                              logindata.setString('username', username);
+                              logindata.setString('Email', email);
+                              // manggil api
+                              
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MyHomePage(),
+                                ),
+                                // PageTransitionsBuilder()
+                                (route) => false,
+                              );
+                            }
+                          },
+                          child: const Text('Login'),
+                        ),
+                      ],
+                    )),
+              ),
     );
   }
 }
+
+
+// FutureBuilder<void>(
+//           future: Provider.of<AuthProvider>(context, listen: false).login(),
+//           builder: (context, AsyncSnapshot<void> snapshot) {
+//             if (snapshot.connectionState == ConnectionState.waiting) {
+//               return const Center(
+//                 child: CircularProgressIndicator(),
+//               );
+//             } else {
+//               final result = Provider.of<AuthProvider>(context);
+//               return

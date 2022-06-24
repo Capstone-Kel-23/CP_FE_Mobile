@@ -1,8 +1,8 @@
 import 'package:app_invoice/enum.dart';
-import 'package:app_invoice/screens/Dashboard/home_page.dart';
 import 'package:app_invoice/screens/Report/client_table.dart';
 import 'package:app_invoice/screens/Report/paid_table.dart';
 import 'package:app_invoice/screens/Report/unpaid_table.dart';
+import 'package:app_invoice/screens/Widget/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 
 class ReportPage extends StatefulWidget {
@@ -28,6 +28,7 @@ class _ReportPageState extends State<ReportPage>
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text(
           'Report',
           style: TextStyle(fontSize: 27, color: Colors.black),
@@ -35,7 +36,7 @@ class _ReportPageState extends State<ReportPage>
         centerTitle: true,
         shadowColor: Colors.transparent,
         leading: Padding(
-          padding: const EdgeInsets.only(left:15.0),
+          padding: const EdgeInsets.only(left: 15.0),
           child: IconButton(
             icon: Icon(
               Icons.arrow_back,
@@ -48,7 +49,9 @@ class _ReportPageState extends State<ReportPage>
       ),
       body: Column(
         children: [
-          SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
           Container(
             decoration: BoxDecoration(
                 // borderRadius: BorderRadius.circular(20),
@@ -62,18 +65,19 @@ class _ReportPageState extends State<ReportPage>
                 labelPadding:
                     EdgeInsets.only(left: 35, right: 35, top: 10, bottom: 10),
                 indicator: BoxDecoration(
-                    color: colorstheme,
-                    // borderRadius: BorderRadius.circular(20)
-                  ),
+                  color: colorstheme,
+                  // borderRadius: BorderRadius.circular(20)
+                ),
                 controller: _tabController,
                 tabs: [
                   Text('Paid'),
                   Text('Unpaid'),
                   Text('Client'),
                 ]),
-                
           ),
-          SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
           Expanded(
             child: TabBarView(
               controller: _tabController,
