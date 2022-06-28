@@ -1,14 +1,12 @@
-class RegisterModel {
+class RegisterError {
   int? code;
-  String? data;
   String? message;
   bool? status;
 
-  RegisterModel({this.code, this.data, this.message, this.status});
+  RegisterError({this.code, this.message, this.status});
 
-  RegisterModel.fromJson(Map<String, dynamic> json) {
+  RegisterError.fromJson(Map<String, dynamic> json) {
     code = json['code'];
-    data = json['data'];
     message = json['message'];
     status = json['status'];
   }
@@ -16,7 +14,6 @@ class RegisterModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['code'] = this.code;
-    data['data'] = this.data;
     data['message'] = this.message;
     data['status'] = this.status;
     return data;

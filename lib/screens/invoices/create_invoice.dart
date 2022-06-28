@@ -3,6 +3,7 @@ import 'package:app_invoice/screens/Widget/bottom_navbar.dart';
 import 'package:app_invoice/screens/invoices/all_invoice.dart';
 import 'package:app_invoice/screens/invoices/edit_invoice.dart';
 import 'package:app_invoice/screens/invoices/paid_invoice.dart';
+import 'package:app_invoice/screens/invoices/preview_invoice.dart';
 import 'package:app_invoice/screens/invoices/unpaid_invoice.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -86,7 +87,7 @@ class _CreateInvoiceState extends State<CreateInvoice>
                   child: EditInvoice(),
                 ),
                 Container(
-                  child: PaidInvoice(),
+                  child: PreviewInvoice(),
                 ),
               ],
             ),

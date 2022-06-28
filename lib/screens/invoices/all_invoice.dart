@@ -37,8 +37,8 @@ class _AllInvoiceState extends State<AllInvoice> {
                     trailing: Container(
                       height: 30,
                       width: 50,
-                      color: Colors.blue,
-                      child: Center(child: Text('Paid',)),
+                      color: Color(0xffB8DCF3),
+                      child: Center(child: Text('Paid',style: TextStyle(fontWeight: FontWeight.w600),)),
                     )
                     // subtitle: Text(faker.randomGenerator.numberOfLength(10)),
                     

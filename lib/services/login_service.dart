@@ -1,24 +1,27 @@
 import 'package:app_invoice/models/defaultError_model.dart';
+import 'package:app_invoice/models/registerError.dart';
+import 'package:app_invoice/models/register_model.dart';
 import 'package:dio/dio.dart';
 import '../models/login_model.dart';
 
 class AuthApi {
-  static login(email, password) async {
+  login(email, password) async {
     var formlogin = {
       "email": email,
       "password": password,
     };
 
     var dio = Dio();
+    dio.interceptors.add(LogInterceptor(responseBody: true, requestBody: true));
 
-    try{
+    try {
       var response =
-        await dio.post('prodapi.tagihin.my.id/api/v1/login', data: formlogin);
+          await dio.post('http://prodapi.tagihin.my.id/api/v1/login', data: formlogin);
       return Login.fromJson(response.data);
     } on DioError catch (error) {
-      final defaultError = DefaultError.fromJson(error.response!.data);
+      final defaultError = DefaultError.fromJson(error.response?.data);
       print(error);
-      throw defaultError.message!;
+      throw "${defaultError.message}";
     }
     // print(response.data.toString());
   }
@@ -32,9 +35,21 @@ class AuthApi {
     };
 
     var dio = Dio();
-    var response =
-        await dio.post('prodapi.tagihin.my.id/api/v1/register', data: formlogin);
-    print(response.data.toString());
+
+    try {
+      var response = await dio.post('prodapi.tagihin.my.id/api/v1/register',
+          data: formlogin);
+      return RegisterModel.fromJson(response.data);
+    } on DioError catch (error) {
+      final registerError = RegisterError.fromJson(error.response!.data);
+      print(error);
+      throw registerError.message!;
+    }
+
+    // var dio = Dio();
+    // var response =
+    //     await dio.post('prodapi.tagihin.my.id/api/v1/register', data: formlogin);
+    // print(response.data.toString());
   }
 }
 
