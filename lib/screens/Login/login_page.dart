@@ -1,8 +1,7 @@
 import 'package:app_invoice/screens/Dashboard/home_page.dart';
+import 'package:app_invoice/screens/Login/lupa_password.dart';
 import 'package:app_invoice/view_model/login_auth.dart';
 import 'package:email_validator/email_validator.dart';
-// import 'package:epl_sport/screens/home.dart';
-// import 'package:epl_sport/screens/login/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -18,9 +17,7 @@ class LoginPage extends StatefulWidget {
 class _SignUpState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
 
-  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
-  final _fullnameController = TextEditingController();
   final _passwordController = TextEditingController();
 
   late SharedPreferences logindata;
@@ -28,7 +25,6 @@ class _SignUpState extends State<LoginPage> {
 
   bool passwordVisible = false;
   bool invisibility = true;
-  bool check = false;
 
   @override
   void initState() {
@@ -53,9 +49,7 @@ class _SignUpState extends State<LoginPage> {
 
   @override
   void dispose() {
-    _nameController.dispose();
     _emailController.dispose();
-    _fullnameController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -76,93 +70,124 @@ class _SignUpState extends State<LoginPage> {
         elevation: 0,
       ),
       body: Container(
-                padding: const EdgeInsets.all(16),
-                child: Form(
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    key: formKey,
-                    child: ListView(
+        padding: const EdgeInsets.all(16),
+        child: Form(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            key: formKey,
+            child: ListView(
+              children: [
+                TextFormField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    labelText: "Email",
+                    hintText: "Enter your email",
+                    contentPadding: EdgeInsets.all(20),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                      gapPadding: 10,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                      gapPadding: 10,
+                    ),
+                    suffixIcon: Icon(Icons.email_outlined),
+                  ),
+                  validator: (email) {
+                    if (email != null && !EmailValidator.validate(email)) {
+                      return 'Enter a valid email';
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                    labelText: "Password",
+                    hintText: "Enter your password",
+                    contentPadding: EdgeInsets.all(20),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                      gapPadding: 10,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                      gapPadding: 10,
+                    ),
+                    suffixIcon: Icon(Icons.lock_outline_rounded),
+                  ),
+                  validator: (value) {
+                    if (value != null && value.length < 8) {
+                      return 'Enter min. 8 characters';
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        TextFormField(
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                            labelText: "Email",
-                            hintText: "Enter your email",
-                            contentPadding: EdgeInsets.all(20),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
-                              gapPadding: 10,
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
-                              gapPadding: 10,
-                            ),
-                            suffixIcon: Icon(Icons.email_outlined),
+                        GestureDetector(
+                          onTap: () {
+                            
+                          },
+                          child: const Text(
+                            'Lupa Password?',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                color: Colors.blue),
                           ),
-                          validator: (email) {
-                            if (email != null &&
-                                !EmailValidator.validate(email)) {
-                              return 'Enter a valid email';
-                            } else {
-                              return null;
-                            }
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          controller: _passwordController,
-                          decoration: InputDecoration(
-                            labelText: "Password",
-                            hintText: "Enter your password",
-                            contentPadding: EdgeInsets.all(20),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
-                              gapPadding: 10,
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
-                              gapPadding: 10,
-                            ),
-                            suffixIcon: Icon(Icons.lock_outline_rounded),
-                          ),
-                          validator: (value) {
-                            if (value != null && value.length < 5) {
-                              return 'Enter min. 5 characters';
-                            } else {
-                              return null;
-                            }
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        ElevatedButton(
-                          onPressed: () async{
-                            if (formKey.currentState!.validate()) {
-                            final result = await authProvider.login( 
-                                  _emailController.text,
-                                  _passwordController.text,
-                                  );
-                              // ignore: use_build_context_synchronously
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) {
-                                  return const MyHomePage();
-                                }),
-                              );
-                            }
-                          },
-                        
-                          child: const Text('Login'),
                         ),
                       ],
-                    )),
-              ),
+                    ),
+                  ),
+                ElevatedButton(
+                  
+                    // final isValidForm = formKey.currentState!.validate();
+                    // String username = _nameController.text;
+                    // String email = _emailController.text;
+                    // if (isValidForm) {
+                    //   logindata.setBool('login', false);
+                    //   logindata.setString('username', username);
+                    //   logindata.setString('Email', email);
+
+                    //   Navigator.pushAndRemoveUntil(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => MyHomePage(),
+                    //     ),
+                    //     // PageTransitionsBuilder()
+                    //     (route) => false,
+                    //   );
+                    // }
+                    onPressed: (() async {
+                      if (formKey.currentState!.validate()) {
+                        await authProvider.login(
+                            _emailController.text, _passwordController.text);
+                        // ignore: use_build_context_synchronously
+                        Navigator.pushAndRemoveUntil(context,
+                            MaterialPageRoute(builder: (ctx) {
+                          return MyHomePage();
+                        }), (route) => false);
+                      }
+                    }),
+                  child: const Text('Login'),
+                ),
+              ],
+            )),
+      ),
     );
   }
 }
-
 
 // // FutureBuilder<void>(
 // //           future: Provider.of<AuthProvider>(context, listen: false).login(),
