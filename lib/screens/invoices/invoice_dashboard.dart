@@ -6,6 +6,7 @@ import 'package:app_invoice/screens/Widget/bottom_navbar.dart';
 import 'package:app_invoice/screens/Widget/search_widget.dart';
 import 'package:app_invoice/screens/invoices/all_invoice.dart';
 import 'package:app_invoice/screens/invoices/create_invoice.dart';
+import 'package:app_invoice/screens/invoices/invoice_empty.dart';
 import 'package:app_invoice/screens/invoices/paid_invoice.dart';
 import 'package:app_invoice/screens/invoices/unpaid_invoice.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +99,8 @@ class _InvoicesDashboardState extends State<InvoicesDashboard>
               controller: _tabController,
               children: [
                 Container(
-                  child: AllInvoice(),
+                  child: InvoiceEmpty(),
+                  // child: AllInvoice(),
                 ),
                 Container(
                   child: PaidInvoice(),
