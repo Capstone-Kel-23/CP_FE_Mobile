@@ -1,4 +1,5 @@
 import 'package:app_invoice/enum.dart';
+import 'package:app_invoice/screens/Client/client_empty.dart';
 import 'package:app_invoice/screens/Client/client_page.dart';
 import 'package:app_invoice/screens/Dashboard/home_page.dart';
 import 'package:app_invoice/screens/Report/report_page.dart';
@@ -92,7 +93,7 @@ class CustomBottomNavbar extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(PageRouteBuilder(
                     pageBuilder: (context, animation, secondaryAnimation) {
-                  return ClientPage();
+                  return ClientEmpty();
                 }, transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                   final tween =
