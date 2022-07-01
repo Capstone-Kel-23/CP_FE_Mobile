@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:app_invoice/services/login_auth.dart';
+import 'package:flutter/cupertino.dart';
 
-import '../services/login_service.dart';
 
 class AuthProvider with ChangeNotifier {
   bool firstTime = true;
@@ -17,9 +17,9 @@ class AuthProvider with ChangeNotifier {
   register(
     nama,
     email,
-    fullname,
+    phone,
     password,
   ) async {
-    await AuthApi.register(nama, email, fullname, password);
+    await AuthApi.register(nama, email, phone, password);
   }
 }
