@@ -1,3 +1,5 @@
+import 'package:app_invoice/screens/invoices/bussiness_detail.dart';
+import 'package:app_invoice/screens/invoices/item_page.dart';
 import 'package:flutter/material.dart';
 
 class EditInvoice extends StatefulWidget {
@@ -38,9 +40,15 @@ class _EditInvoiceState extends State<EditInvoice> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      child: Text(
-                        'Bussiness Info',
-                        style: TextStyle(color: Color(0xff386190)),
+                      child: FlatButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => BussinessDetail()));
+                        },
+                        child: Text(
+                          'Bussiness Info',
+                          style: TextStyle(color: Color(0xff386190)),
+                        ),
                       ),
                     ),
                     Container(
@@ -115,8 +123,14 @@ class _EditInvoiceState extends State<EditInvoice> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      child: Text("Add item",
-                          style: TextStyle(color: Color(0xff386190))),
+                      child: FlatButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (_) => ItemPage()));
+                        },
+                        child: Text("Add item",
+                            style: TextStyle(color: Color(0xff386190))),
+                      ),
                     ),
                   ],
                 ),

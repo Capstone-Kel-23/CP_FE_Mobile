@@ -14,10 +14,10 @@ class AuthApi {
     print(response.data.toString());
   }
 
-  static register(email, fullname, password, username) async {
+  static register(fullname, email, password, username) async {
     var formlogin = {
-      "email": email,
       "fullname": fullname,
+      "email": email,
       "password": password,
       "username": username,
     };

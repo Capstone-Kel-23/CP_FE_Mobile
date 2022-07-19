@@ -10,8 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'login_page.dart';
 
 class RegisterPage extends StatefulWidget {
-  final url =
-      'http://prodapi.tagihin.my.id/api/v1';
+  final url = 'http://prodapi.tagihin.my.id/api/v1';
   const RegisterPage({Key? key}) : super(key: key);
 
   @override
@@ -67,7 +66,7 @@ class _SignUpState extends State<RegisterPage> {
                         borderSide: BorderSide(color: Colors.black),
                         gapPadding: 10,
                       ),
-                      suffixIcon: Icon(Icons.email_outlined),
+                      // suffixIcon: Icon(Icons.email_outlined),
                     ),
                     validator: (email) {
                       if (email != null && !EmailValidator.validate(email)) {
@@ -95,7 +94,34 @@ class _SignUpState extends State<RegisterPage> {
                         borderSide: BorderSide(color: Colors.black),
                         gapPadding: 10,
                       ),
-                      suffixIcon: Icon(Icons.person_outline_rounded),
+                      // suffixIcon: Icon(Icons.person_outline_rounded),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Nama';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    controller: _usernameController,
+                    decoration: InputDecoration(
+                      labelText: "Username",
+                      hintText: "Enter your username",
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 45, vertical: 20),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                        gapPadding: 10,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                        gapPadding: 10,
+                      ),
+                      // suffixIcon: Icon(Icons.person_outline_rounded),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -123,7 +149,7 @@ class _SignUpState extends State<RegisterPage> {
                         borderSide: BorderSide(color: Colors.black),
                         gapPadding: 10,
                       ),
-                      suffixIcon: Icon(Icons.lock_outline_rounded),
+                      // suffixIcon: Icon(Icons.lock_outline_rounded),
                     ),
                     validator: (value) {
                       if (value != null && value.length < 8) {
@@ -133,34 +159,9 @@ class _SignUpState extends State<RegisterPage> {
                       }
                     },
                   ),
+
                   
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: _usernameController,
-                    decoration: InputDecoration(
-                      labelText: "Username",
-                      hintText: "Enter your username",
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 45, vertical: 20),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                        gapPadding: 10,
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                        gapPadding: 10,
-                      ),
-                      suffixIcon: Icon(Icons.person_outline_rounded),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Nama';
-                      }
-                      return null;
-                    },
-                  ),Padding(
+                  Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: Row(
                       children: [
@@ -212,10 +213,10 @@ class _SignUpState extends State<RegisterPage> {
                         ? (() async {
                             if (formKey.currentState!.validate()) {
                               await authProvider.register(
-                                _emailController.text,
                                   _fullnameController.text,
+                                  _emailController.text,
                                   _passwordController.text,
-                                  _fullnameController.text);
+                                  _usernameController.text);
                               // ignore: use_build_context_synchronously
                               Navigator.push(
                                 context,

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:app_invoice/screens/Dashboard/home_page.dart';
 import 'package:app_invoice/screens/Login/login_page.dart';
 import 'package:app_invoice/screens/Login/register_page.dart';
 import 'package:flutter/material.dart';
@@ -74,7 +75,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           // MaterialPageRoute(builder: (_) => DetailCLub(index: index))
                           PageRouteBuilder(pageBuilder:
                               (context, animation, secondaryAnimation) {
-                        return LoginPage();
+                        return MyHomePage();
                       }, transitionsBuilder:
                               (context, animation, secondaryAnimation, child) {
                         final tween =

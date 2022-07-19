@@ -15,11 +15,11 @@ class AuthProvider with ChangeNotifier {
   }
 
   register(
-    nama,
+    fullname,
     email,
-    phone,
     password,
+    username,
   ) async {
-    await AuthApi.register(nama, email, phone, password);
+    await AuthApi.register(fullname, email, password, username);
   }
 }

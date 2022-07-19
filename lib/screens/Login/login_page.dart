@@ -90,7 +90,7 @@ class _SignUpState extends State<LoginPage> {
                       borderSide: BorderSide(color: Colors.black),
                       gapPadding: 10,
                     ),
-                    suffixIcon: Icon(Icons.email_outlined),
+                    
                   ),
                   validator: (email) {
                     if (email != null && !EmailValidator.validate(email)) {
@@ -117,7 +117,7 @@ class _SignUpState extends State<LoginPage> {
                       borderSide: BorderSide(color: Colors.black),
                       gapPadding: 10,
                     ),
-                    suffixIcon: Icon(Icons.lock_outline_rounded),
+                    
                   ),
                   validator: (value) {
                     if (value != null && value.length < 8) {
@@ -151,24 +151,6 @@ class _SignUpState extends State<LoginPage> {
                     ),
                   ),
                 ElevatedButton(
-                  
-                    // final isValidForm = formKey.currentState!.validate();
-                    // String username = _nameController.text;
-                    // String email = _emailController.text;
-                    // if (isValidForm) {
-                    //   logindata.setBool('login', false);
-                    //   logindata.setString('username', username);
-                    //   logindata.setString('Email', email);
-
-                    //   Navigator.pushAndRemoveUntil(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => MyHomePage(),
-                    //     ),
-                    //     // PageTransitionsBuilder()
-                    //     (route) => false,
-                    //   );
-                    // }
                     onPressed: (() async {
                       if (formKey.currentState!.validate()) {
                         await authProvider.login(
@@ -179,9 +161,32 @@ class _SignUpState extends State<LoginPage> {
                           return MyHomePage();
                         }), (route) => false);
                       }
-                    }),
+                    }
+                    ),
                   child: const Text('Login'),
                 ),
+
+                // tanpa api
+                // ElevatedButton(onPressed: () {
+                //       final isValidForm = formKey.currentState!.validate();
+                //       String email = _emailController.text;
+                //       String password = _passwordController.text;
+                //       if (isValidForm) {
+                //         logindata.setBool('login', false);
+                //         logindata.setString('Email', email);
+                //         logindata.setString('Password', password);
+
+                //         Navigator.pushAndRemoveUntil(
+                //           context,
+                //           MaterialPageRoute(
+                //             builder: (context) => MyHomePage(),
+                //           ),
+                //           // PageTransitionsBuilder()
+                //           (route) => false,
+                //         );
+                //       }
+                //     },
+                //     child:  Text('Login')),
               ],
             )),
       ),

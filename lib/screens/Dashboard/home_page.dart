@@ -1,9 +1,13 @@
 import 'package:app_invoice/enum.dart';
+import 'package:app_invoice/screens/Client/create_client.dart';
 import 'package:app_invoice/screens/Widget/search_widget.dart';
 import 'package:app_invoice/screens/Widget/bottom_navbar.dart';
+import 'package:app_invoice/screens/invoices/create_invoice.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../models/create_invoice.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -202,7 +206,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: const EdgeInsets.symmetric(
                                   horizontal: 10),
                     child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CreateClient()));
+                        },
                         style: ElevatedButton.styleFrom(primary: const Color(0xff386190)),
                         child: Text('Start',
                             style: GoogleFonts.poppins(

@@ -46,7 +46,9 @@ class _CreateInvoiceState extends State<CreateInvoice>
               color: Colors.black,
               size: 30,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
       ),

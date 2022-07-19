@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Widget/search_widget.dart';
+import 'create_client.dart';
 
 class ClientEmpty extends StatefulWidget {
   const ClientEmpty({Key? key}) : super(key: key);
@@ -63,10 +64,30 @@ class _ClientEmptyState extends State<ClientEmpty> {
           ),
         ),
       ),
-      floatingActionButton: const FloatingActionButton(
-        tooltip: 'Add', // used by assistive technologies
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.of(context).push(PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return CreateClient();
+                  },
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    const begin = Offset(0.0, 1.0);
+                    const end = Offset.zero;
+                    final tween = Tween(begin: begin, end: end);
+                    final offsetAnimation = animation.drive(tween);
+
+                    return SlideTransition(
+                      position: offsetAnimation,
+                      child: child,
+                    );
+                  },
+                ));
+        },
+        backgroundColor: Color(0xFF386190),
+        // tooltip: 'Add', // used by assistive technologies
         child: Icon(Icons.add),
-        onPressed: null,
+        
       ),
       bottomNavigationBar: CustomBottomNavbar(
         selectedMenu: MenuState.client,

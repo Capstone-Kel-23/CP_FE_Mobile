@@ -1,10 +1,13 @@
 import 'package:app_invoice/enum.dart';
+import 'package:app_invoice/models/create_invoice.dart';
+import 'package:app_invoice/screens/Client/create_client.dart';
 import 'package:app_invoice/screens/Report/client_table.dart';
 import 'package:app_invoice/screens/Report/paid_table.dart';
 import 'package:app_invoice/screens/Report/unpaid_table.dart';
 import 'package:app_invoice/screens/Widget/bottom_navbar.dart';
 import 'package:app_invoice/screens/Widget/search_widget.dart';
 import 'package:app_invoice/screens/invoices/all_invoice.dart';
+import 'package:app_invoice/screens/invoices/bikin_invoice.dart';
 import 'package:app_invoice/screens/invoices/create_invoice.dart';
 import 'package:app_invoice/screens/invoices/invoice_empty.dart';
 import 'package:app_invoice/screens/invoices/paid_invoice.dart';
@@ -117,7 +120,7 @@ class _InvoicesDashboardState extends State<InvoicesDashboard>
         onPressed: (){
           Navigator.of(context).push(PageRouteBuilder(
                   pageBuilder: (context, animation, secondaryAnimation) {
-                    return CreateInvoice();
+                    return AllInvoice();
                   },
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {

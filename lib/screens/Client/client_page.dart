@@ -1,4 +1,5 @@
 import 'package:app_invoice/enum.dart';
+import 'package:app_invoice/screens/Client/create_client.dart';
 import 'package:app_invoice/screens/Widget/bottom_navbar.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
@@ -78,12 +79,38 @@ class _ClientPageState extends State<ClientPage> {
         
                 
       ),
-      
-      floatingActionButton: const FloatingActionButton(
-        tooltip: 'Add', // used by assistive technologies
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.of(context).push(PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return CreateClient();
+                  },
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    const begin = Offset(0.0, 1.0);
+                    const end = Offset.zero;
+                    final tween = Tween(begin: begin, end: end);
+                    final offsetAnimation = animation.drive(tween);
+
+                    return SlideTransition(
+                      position: offsetAnimation,
+                      child: child,
+                    );
+                  },
+                ));
+        },
+        backgroundColor: Color(0xFF386190),
+        // tooltip: 'Add', // used by assistive technologies
         child: Icon(Icons.add),
-        onPressed: null,
+        
       ),
+      
+      // floatingActionButton: const FloatingActionButton(
+      //   tooltip: 'Add', // used by assistive technologies
+      //   child: Icon(Icons.add),
+      //   onPressed: null,
+      // ),
       bottomNavigationBar: CustomBottomNavbar(
         selectedMenu: MenuState.client,
       ),

@@ -1,4 +1,5 @@
 import 'package:app_invoice/screens/SplashScreen/splash_screen.dart';
+import 'package:app_invoice/view_model/client_view.dart';
 import 'package:app_invoice/view_model/login_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<AuthProvider>(
           create: (context) => AuthProvider(),
         ),
+        ChangeNotifierProvider(create: (context) => Inovice()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
